@@ -1,0 +1,20 @@
+[project]
+name = "DAYJOB-harness"
+version = "0.1.0"
+description = "Harness for reproducing DAYJOB benchmarks."
+requires-python = ">=3.12"
+dependencies = [
+    # Host-side harness runner.
+    # The adapter depends on this Harbor version's installed-agent interface.
+    "harbor==0.22.0",
+    # Package with HarborInstalledAgent implementation. In-tree source; it pulls in
+    # the sibling agent-harness checkout as a path dependency, which is also
+    # the source uploaded into task containers at runtime.
+    "harbor-agents",
+]
+
+[tool.uv]
+package = false
+
+[tool.uv.sources]
+harbor-agents = { path = "harbor-agents", editable = true }
